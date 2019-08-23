@@ -1,0 +1,1 @@
+var app=angular.module('666',['pagination']);   /*分页的功能*/

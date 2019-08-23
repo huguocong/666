@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>管理</title>
+    <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="AnglaJS/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="AnglaJS/plugins/adminLTE/css/AdminLTE.css">
+    <link rel="stylesheet" href="AnglaJS/plugins/adminLTE/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="AnglaJS/css/style.css">
+    <script src="AnglaJS/plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <script src="AnglaJS/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="AnglaJS/plugins/angularjs/angular.min.js">  </script>
+    <!-- 引入分页相关的JS和CSS -->
+    <script type="text/javascript" src="AnglaJS/plugins/angularjs/pagination.js"></script>
+    <link rel="stylesheet" href="AnglaJS/plugins/angularjs/pagination.css">
+
+
+    <script type="text/javascript" src="AnglaJS/js/base.js">  </script>
+    <script type="text/javascript" src="AnglaJS/js/service/yonghuService.js">  </script>
+    <script type="text/javascript" src="AnglaJS/js/controller/baseController.js">  </script>
+    <script type="text/javascript" src="AnglaJS/js/controller/yonghuController.js">  </script>
+
+</head>
+<body class="hold-transition skin-red sidebar-mini" ng-app="666" ng-controller="yonghuController" ng-init="shubiao()" >
+<!-- .box-body -->
+<div class="box-header with-border">
+    <h3 class="box-title">管理</h3>
+</div>
+
+<div class="box-body">
+
+    <!-- 数据表格 -->
+    <div class="table-box">
+        <div class="pull-left">
+            <div class="form-group form-inline">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default" title="汇表" ng-click="biao()">汇表</button>
+                </div>
+            </div>
+        </div>
+        <div class="box-tools pull-right">
+
+        </div>
+
+
+
+        <!--数据列表-->
+        <table id="dataList" class="table table-bordered table-striped table-hover dataTable">
+            <thead>
+            <tr>
+                <th class="" style="padding-right:0px">
+                    <input id="selall" type="checkbox" class="icheckbox_square-blue">
+                </th>
+
+                <th class="sorting">号码</th>
+                <th class="sorting">原注</th>
+                <th class="sorting">下注</th>
+                <th class="sorting">吃掉</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="entity in list">
+                <td><input  type="checkbox" ng-click="updateSelection($event,entity.id)"></td>
+                <td>{{entity.id}}</td>
+                <td>{{entity.yuan}}</td>
+                <td>{{entity.xian}}</td>
+                <td>{{entity.yuan-entity.xian}}</td>
+            </tr>
+            </tbody>
+        </table>
+        <!--数据列表/-->
+    </div>
+</div>
+<!-- /.box-body -->
+
+
+</body>
+</html>

@@ -1,0 +1,10 @@
+com\service\TemaService.class
+com\service\impl\PingServiceImpl.class
+com\service\PingService.class
+com\service\impl\XiaoServiceImpl.class
+com\service\impl\TemaServiceImpl.class
+com\service\YonghuService.class
+com\service\impl\YonghuServiceImpl.class
+com\service\impl\UserServiceImpl.class
+com\service\UserService.class
+com\service\XiaoService.class

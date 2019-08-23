@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.TbYonghuMapper" >
+  <resultMap id="BaseResultMap" type="pojo.TbYonghu" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="tema" property="tema" jdbcType="VARCHAR" />
+    <result column="pin" property="pin" jdbcType="VARCHAR" />
+    <result column="lianxiao" property="lianxiao" jdbcType="VARCHAR" />
+    <result column="yingfu" property="yingfu" jdbcType="INTEGER" />
+    <result column="shifu" property="shifu" jdbcType="INTEGER" />
+    <result column="beishu" property="beishu" jdbcType="INTEGER" />
+    <result column="result" property="result" jdbcType="INTEGER" />
+    <result column="date" property="date" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, name, tema, pin, lianxiao, yingfu, shifu, beishu, result, date
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="pojo.TbYonghuExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_yonghu
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_yonghu
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_yonghu
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="pojo.TbYonghuExample" >
+    delete from tb_yonghu
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="pojo.TbYonghu" >
+    insert into tb_yonghu (id, name, tema, 
+      pin, lianxiao, yingfu, 
+      shifu, beishu, result, 
+      date)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{tema,jdbcType=VARCHAR}, 
+      #{pin,jdbcType=VARCHAR}, #{lianxiao,jdbcType=VARCHAR}, #{yingfu,jdbcType=INTEGER}, 
+      #{shifu,jdbcType=INTEGER}, #{beishu,jdbcType=INTEGER}, #{result,jdbcType=INTEGER}, 
+      #{date,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="pojo.TbYonghu" >
+    insert into tb_yonghu
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="tema != null" >
+        tema,
+      </if>
+      <if test="pin != null" >
+        pin,
+      </if>
+      <if test="lianxiao != null" >
+        lianxiao,
+      </if>
+      <if test="yingfu != null" >
+        yingfu,
+      </if>
+      <if test="shifu != null" >
+        shifu,
+      </if>
+      <if test="beishu != null" >
+        beishu,
+      </if>
+      <if test="result != null" >
+        result,
+      </if>
+      <if test="date != null" >
+        date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="tema != null" >
+        #{tema,jdbcType=VARCHAR},
+      </if>
+      <if test="pin != null" >
+        #{pin,jdbcType=VARCHAR},
+      </if>
+      <if test="lianxiao != null" >
+        #{lianxiao,jdbcType=VARCHAR},
+      </if>
+      <if test="yingfu != null" >
+        #{yingfu,jdbcType=INTEGER},
+      </if>
+      <if test="shifu != null" >
+        #{shifu,jdbcType=INTEGER},
+      </if>
+      <if test="beishu != null" >
+        #{beishu,jdbcType=INTEGER},
+      </if>
+      <if test="result != null" >
+        #{result,jdbcType=INTEGER},
+      </if>
+      <if test="date != null" >
+        #{date,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="pojo.TbYonghuExample" resultType="java.lang.Integer" >
+    select count(*) from tb_yonghu
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_yonghu
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tema != null" >
+        tema = #{record.tema,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pin != null" >
+        pin = #{record.pin,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lianxiao != null" >
+        lianxiao = #{record.lianxiao,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yingfu != null" >
+        yingfu = #{record.yingfu,jdbcType=INTEGER},
+      </if>
+      <if test="record.shifu != null" >
+        shifu = #{record.shifu,jdbcType=INTEGER},
+      </if>
+      <if test="record.beishu != null" >
+        beishu = #{record.beishu,jdbcType=INTEGER},
+      </if>
+      <if test="record.result != null" >
+        result = #{record.result,jdbcType=INTEGER},
+      </if>
+      <if test="record.date != null" >
+        date = #{record.date,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_yonghu
+    set id = #{record.id,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      tema = #{record.tema,jdbcType=VARCHAR},
+      pin = #{record.pin,jdbcType=VARCHAR},
+      lianxiao = #{record.lianxiao,jdbcType=VARCHAR},
+      yingfu = #{record.yingfu,jdbcType=INTEGER},
+      shifu = #{record.shifu,jdbcType=INTEGER},
+      beishu = #{record.beishu,jdbcType=INTEGER},
+      result = #{record.result,jdbcType=INTEGER},
+      date = #{record.date,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="pojo.TbYonghu" >
+    update tb_yonghu
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="tema != null" >
+        tema = #{tema,jdbcType=VARCHAR},
+      </if>
+      <if test="pin != null" >
+        pin = #{pin,jdbcType=VARCHAR},
+      </if>
+      <if test="lianxiao != null" >
+        lianxiao = #{lianxiao,jdbcType=VARCHAR},
+      </if>
+      <if test="yingfu != null" >
+        yingfu = #{yingfu,jdbcType=INTEGER},
+      </if>
+      <if test="shifu != null" >
+        shifu = #{shifu,jdbcType=INTEGER},
+      </if>
+      <if test="beishu != null" >
+        beishu = #{beishu,jdbcType=INTEGER},
+      </if>
+      <if test="result != null" >
+        result = #{result,jdbcType=INTEGER},
+      </if>
+      <if test="date != null" >
+        date = #{date,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="pojo.TbYonghu" >
+    update tb_yonghu
+    set name = #{name,jdbcType=VARCHAR},
+      tema = #{tema,jdbcType=VARCHAR},
+      pin = #{pin,jdbcType=VARCHAR},
+      lianxiao = #{lianxiao,jdbcType=VARCHAR},
+      yingfu = #{yingfu,jdbcType=INTEGER},
+      shifu = #{shifu,jdbcType=INTEGER},
+      beishu = #{beishu,jdbcType=INTEGER},
+      result = #{result,jdbcType=INTEGER},
+      date = #{date,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
